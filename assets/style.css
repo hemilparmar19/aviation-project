@@ -1,0 +1,150 @@
+/* ── GLOBAL ─────────────────────────────────── */
+html, body, [class*="css"] {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* ── SIDEBAR ─────────────────────────────────── */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #0d1117 0%, #0a0e1a 100%);
+    border-right: 1px solid #1a2035;
+}
+
+section[data-testid="stSidebar"] * {
+    color: #c9d1d9 !important;
+}
+
+/* ── MAIN BACKGROUND ──────────────────────────── */
+.main .block-container {
+    background-color: #0a0e1a;
+    padding-top: 2rem;
+}
+
+/* ── METRIC CARDS ─────────────────────────────── */
+[data-testid="metric-container"] {
+    background: linear-gradient(135deg, #1a2035, #1e3a5f);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #2a4a7f;
+    box-shadow: 0 4px 15px rgba(0,100,255,0.1);
+}
+
+[data-testid="metric-container"] label {
+    color: #8899aa !important;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+[data-testid="metric-container"] [data-testid="stMetricValue"] {
+    color: #4da6ff !important;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+}
+
+/* ── BUTTONS ──────────────────────────────────── */
+.stButton > button {
+    background: linear-gradient(135deg, #1a6fff, #0044cc);
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: 600;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(135deg, #4488ff, #1a6fff);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26,111,255,0.4);
+}
+
+/* ── TABS ─────────────────────────────────────── */
+.stTabs [data-baseweb="tab-list"] {
+    background: #0d1117;
+    border-bottom: 1px solid #2a4a7f;
+    gap: 4px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    color: #8899aa !important;
+    background: transparent;
+    border-radius: 6px 6px 0 0;
+}
+
+.stTabs [aria-selected="true"] {
+    background: #1a2035 !important;
+    color: #4da6ff !important;
+    border-bottom: 2px solid #4da6ff;
+}
+
+/* ── DATAFRAME / TABLES ───────────────────────── */
+.stDataFrame {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #2a4a7f;
+}
+
+/* ── HEADERS ──────────────────────────────────── */
+h1 { color: #4da6ff !important; font-weight: 700; }
+h2 { color: #4da6ff !important; font-weight: 600; }
+h3 { color: #c9d1d9 !important; font-weight: 600; }
+
+/* ── DIVIDERS ─────────────────────────────────── */
+hr { border-color: #1a2035 !important; margin: 1.5rem 0; }
+
+/* ── SELECT / INPUT ───────────────────────────── */
+.stSelectbox div[data-baseweb="select"] > div,
+.stMultiSelect div[data-baseweb="select"] > div {
+    background: #0d1117 !important;
+    border-color: #2a4a7f !important;
+    color: #ffffff !important;
+}
+
+/* ── INFO / WARNING BOXES ─────────────────────── */
+.stInfo    { background: #0d2137 !important; border-left: 4px solid #4da6ff; }
+.stWarning { background: #1a1400 !important; border-left: 4px solid #ffcc00; }
+.stSuccess { background: #001a0d !important; border-left: 4px solid #00ff88; }
+.stError   { background: #1a0008 !important; border-left: 4px solid #ff0044; }
+
+/* ── INSIGHT CARD ─────────────────────────────── */
+.insight-card {
+    background: #1a2035;
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin: 8px 0;
+    border-left: 3px solid #4da6ff;
+    color: #c9d1d9;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+/* ── NAV CARD ─────────────────────────────────── */
+.nav-card {
+    background: linear-gradient(135deg, #1a2035, #1e3a5f);
+    padding: 22px;
+    border-radius: 14px;
+    text-align: center;
+    border: 1px solid #2a4a7f;
+    transition: all 0.3s ease;
+    min-height: 160px;
+}
+
+.nav-card:hover {
+    border-color: #4da6ff;
+    box-shadow: 0 6px 20px rgba(77,166,255,0.2);
+    transform: translateY(-3px);
+}
+
+.nav-card h3 { color: #4da6ff !important; margin: 8px 0 4px 0; }
+.nav-card p  { color: #8899aa; font-size: 0.82rem; margin: 0; }
+
+/* ── FOOTER ───────────────────────────────────── */
+.footer {
+    text-align: center;
+    color: #8899aa;
+    font-size: 0.8rem;
+    padding: 20px 0 10px 0;
+    border-top: 1px solid #1a2035;
+    margin-top: 2rem;
+}
