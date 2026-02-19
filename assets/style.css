@@ -148,3 +148,12 @@ hr { border-color: #1a2035 !important; margin: 1.5rem 0; }
     border-top: 1px solid #1a2035;
     margin-top: 2rem;
 }
+
+
+/* ── HIDE APP FROM SIDEBAR ───────────────────── */
+section[data-testid="stSidebar"] a[href="?"] {
+    display: none !important;
+}
+section[data-testid="stSidebar"] li:has(a[href="?"]) {
+    display: none !important;
+}

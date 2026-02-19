@@ -34,7 +34,7 @@ with st.sidebar:
     st.divider()
     st.markdown("**📄 Report Settings**")
     report_title = st.text_input("Report Title", value="Global Aviation Accident Analysis Report")
-    author_name  = st.text_input("Author / Team Name", value="Data Science Team")
+    author_name  = st.text_input("Author / Team Name", value="Hitanshi Parekh & Sakshi Darji")
     year_range   = st.slider("Year Range", 2015, 2025, (2015, 2025))
     st.divider()
     st.markdown("**📋 Include Sections**")

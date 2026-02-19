@@ -186,16 +186,15 @@ st.divider()
 # ═══════════════════════════════════════════════
 st.subheader("🚀 Explore the Platform")
 
-n1, n2, n3, n4 = st.columns(4)
+n1, n2, n3 = st.columns(3)
 
 pages = [
     ("📊", "Dashboard",      "Recreated interactive dashboard with all Power BI visuals",   "pages/2_Dashboard.py"),
-    ("🔍", "Accident Explorer","Search & filter all 2,596 accidents with detailed view",     "pages/3_Accident_Explorer.py"),
     ("🤖", "AI Risk Predictor","ML-powered accident risk prediction for any route/aircraft", "pages/4_Risk_Predictor.py"),
     ("📈", "Trend Forecast",  "2026–2027 accident predictions using time series models",     "pages/5_Trend_Forecast.py"),
 ]
 
-for col, (icon, title, desc, page) in zip([n1, n2, n3, n4], pages):
+for col, (icon, title, desc, page) in zip([n1, n2, n3], pages):
     with col:
         st.markdown(f"""
             <div class='nav-card'>
@@ -204,8 +203,10 @@ for col, (icon, title, desc, page) in zip([n1, n2, n3, n4], pages):
                 <p>{desc}</p>
             </div>
         """, unsafe_allow_html=True)
-        if st.button(f"Open {title}", key=f"nav_{title}"):
-            st.switch_page(page)
+        col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
+        with col_btn2:
+            if st.button(f"Open {title}", key=f"nav_{title}"):
+                st.switch_page(page)
 
 # ═══════════════════════════════════════════════
 #  FOOTER
