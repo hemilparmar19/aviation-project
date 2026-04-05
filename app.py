@@ -21,9 +21,11 @@ load_css()
 with st.sidebar:
     st.markdown("""
         <div style='text-align:center; padding: 10px 0 20px 0;'>
-            <h2 style='color:#4da6ff; margin:0;'>✈️</h2>
-            <h3 style='color:#4da6ff; margin:4px 0 0 0;'>Aviation Safety</h3>
-            <p style='color:#8899aa; font-size:0.8rem; margin:0;'>
+            <div style='font-size:2.2rem; margin-bottom:4px;'>&#9992;</div>
+            <h3 style='color:#00a8ff; margin:4px 0 0 0; font-family:"Share Tech Mono",monospace;
+                        text-shadow:0 0 10px rgba(0,168,255,0.4);'>AVIATION SAFETY</h3>
+            <p style='color:#7a8a9a; font-size:0.75rem; margin:0;
+                       letter-spacing:3px; text-transform:uppercase;'>
                 Intelligence Platform
             </p>
         </div>
@@ -31,21 +33,23 @@ with st.sidebar:
 
     st.divider()
     st.markdown("""
-        <div style='color:#8899aa; font-size:0.8rem; line-height:2;'>
-            📊 <b style='color:#c9d1d9;'>Dataset:</b> 2015–2025<br>
-            🌍 <b style='color:#c9d1d9;'>Coverage:</b> Global<br>
-            📁 <b style='color:#c9d1d9;'>Records:</b> 2,596 accidents<br>
-            🗂️ <b style='color:#c9d1d9;'>Tables:</b> 4 (joined)<br>
+        <div style='color:#7a8a9a; font-size:0.8rem; line-height:2;
+                    font-family:"Share Tech Mono",monospace;'>
+            <span style='color:#00a8ff;'>></span> <b style='color:#e0e0e0;'>DATASET:</b> 2015-2025<br>
+            <span style='color:#00a8ff;'>></span> <b style='color:#e0e0e0;'>COVERAGE:</b> GLOBAL<br>
+            <span style='color:#00a8ff;'>></span> <b style='color:#e0e0e0;'>RECORDS:</b> 2,596<br>
+            <span style='color:#00a8ff;'>></span> <b style='color:#e0e0e0;'>TABLES:</b> 4 (JOINED)<br>
         </div>
     """, unsafe_allow_html=True)
 
     st.divider()
     st.markdown("""
-        <div style='color:#8899aa; font-size:0.78rem; text-align:center;'>
-            🎓 Third Year Data Science Project<br>
-            <b style='color:#c9d1d9;'>Trend Analysis of Global<br>Airplane Accidents</b>
+        <div style='color:#7a8a9a; font-size:0.75rem; text-align:center;
+                    font-family:"Share Tech Mono",monospace;'>
+            THIRD YEAR DATA SCIENCE PROJECT<br>
+            <b style='color:#00d4ff;'>TREND ANALYSIS OF GLOBAL<br>AIRPLANE ACCIDENTS</b>
         </div>
     """, unsafe_allow_html=True)
 
 # ── Redirect to Home ────────────────────────────
-#st.switch_page("pages/1_Home.py")
+st.switch_page("pages/1_Home.py")

@@ -19,7 +19,9 @@ load_css()
 
 # ── Sidebar ──────────────────────────────────────
 with st.sidebar:
-    st.markdown("<h3 style='color:#4da6ff;'>✈️ Aviation Safety</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color:#00a8ff; font-family:\"Share Tech Mono\",monospace; "
+                "text-shadow:0 0 8px rgba(0,168,255,0.3);'>AVIATION SAFETY</h3>",
+                unsafe_allow_html=True)
     st.divider()
     st.markdown("**🔽 Forecast Settings**")
     forecast_years  = st.slider("Forecast Up To", 2026, 2030, 2027)
@@ -31,13 +33,13 @@ with st.sidebar:
         default=["All"]
     )
     st.divider()
-    st.markdown("""
-        <div style='background:#1a2035;padding:14px;border-radius:10px;border:1px solid #2a4a7f;'>
-            <p style='color:#8899aa;margin:0;font-size:0.78rem;'>📐 MODEL</p>
-            <p style='color:#4da6ff;margin:4px 0 0 0;font-weight:600;'>Linear Regression</p>
-            <p style='color:#8899aa;margin:8px 0 0 0;font-size:0.78rem;'>📊 TRAINING DATA</p>
-            <p style='color:#c9d1d9;margin:4px 0 0 0;font-weight:600;'>2015–2024 (10 years)</p>
-            <p style='color:#8899aa;margin:8px 0 0 0;font-size:0.78rem;'>⚠️ NOTE</p>
+    st.markdown(f"""
+        <div style='background:#0a0f14;padding:14px;border-radius:10px;border:1px solid rgba(0,168,255,0.2);'>
+            <p style='color:#7a8a9a;margin:0;font-size:0.78rem;'>📐 MODEL</p>
+            <p style='color:#00a8ff;margin:4px 0 0 0;font-weight:600;'>Linear Regression</p>
+            <p style='color:#7a8a9a;margin:8px 0 0 0;font-size:0.78rem;'>📊 TRAINING DATA</p>
+            <p style='color:#e0e0e0;margin:4px 0 0 0;font-weight:600;'>2015–2024 (10 years)</p>
+            <p style='color:#7a8a9a;margin:8px 0 0 0;font-size:0.78rem;'>⚠️ NOTE</p>
             <p style='color:#ffcc00;margin:4px 0 0 0;font-size:0.8rem;'>2025 excluded (partial year)</p>
         </div>
     """, unsafe_allow_html=True)
@@ -67,16 +69,16 @@ def linear_forecast(train_df, col, forecast_yrs):
 import plotly.graph_objects as go
 import plotly.express as px
 
-DARK = dict(plot_bgcolor="#0d1117", paper_bgcolor="#0d1117",
-            font=dict(color="#ffffff"),
+DARK = dict(plot_bgcolor="#0a0f14", paper_bgcolor="#0a0f14",
+            font=dict(color="#e0e0e0"),
             margin=dict(l=20,r=20,t=50,b=20))
 
 # ═══════════════════════════════════════════════
 #  HEADER
 # ═══════════════════════════════════════════════
-st.markdown("<h1 style='color:#4da6ff;'>📈 Accident Trend Forecast</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color:#00a8ff; text-shadow:0 0 15px rgba(0,168,255,0.3);'>📈 Accident Trend Forecast</h1>", unsafe_allow_html=True)
 st.markdown("""
-    <p style='color:#8899aa;'>
+    <p style='color:#7a8a9a;'>
         Linear regression model trained on 10 years of accident data (2015–2024).
         Predicts global aviation accidents through 2030.
     </p>
@@ -120,8 +122,8 @@ fig.add_trace(go.Scatter(
     x=train["year"], y=train["total_accidents"],
     mode="lines+markers",
     name="Historical (2015–2024)",
-    line=dict(color="#4da6ff", width=3),
-    marker=dict(size=8, color="#4da6ff"),
+    line=dict(color="#00a8ff", width=3),
+    marker=dict(size=8, color="#00a8ff"),
     hovertemplate="<b>Year:</b> %{x}<br><b>Accidents:</b> %{y}<extra></extra>"
 ))
 
@@ -159,16 +161,16 @@ if show_confidence:
     ))
 
 # Vertical line at forecast start
-fig.add_vline(x=2024.5, line_dash="dot", line_color="#8899aa",
-              annotation_text="Forecast →", annotation_font_color="#8899aa")
+fig.add_vline(x=2024.5, line_dash="dot", line_color="#7a8a9a",
+              annotation_text="Forecast →", annotation_font_color="#7a8a9a")
 
 fig.update_layout(
     **DARK,
     height=420,
-    legend=dict(bgcolor="rgba(0,0,0,0)", bordercolor="#2a4a7f",
-                font=dict(color="#ffffff")),
-    xaxis=dict(gridcolor="#1a2035", tickmode="linear", dtick=1),
-    yaxis=dict(gridcolor="#1a2035", title="Total Accidents")
+    legend=dict(bgcolor="rgba(0,0,0,0)", bordercolor="rgba(0,168,255,0.2)",
+                font=dict(color="#e0e0e0")),
+    xaxis=dict(gridcolor="#0a0f14", tickmode="linear", dtick=1),
+    yaxis=dict(gridcolor="#0a0f14", title="Total Accidents")
 )
 st.plotly_chart(fig, use_container_width=True)
 
@@ -256,7 +258,7 @@ if "All" not in selected_cats:
 cat_yearly = df[df["year"]<=2024].groupby(["year","aircraft_category"]).size().reset_index(name="accidents")
 
 cat_fig = go.Figure()
-colors  = ["#4da6ff","#00ff88","#ffcc00","#ff6600","#ff0044","#aa44ff","#44ffff"]
+colors  = ["#00a8ff","#00ff88","#ffcc00","#ff6600","#ff0044","#aa44ff","#44ffff"]
 
 for cat, color in zip(categories, colors):
     cat_data = cat_yearly[cat_yearly["aircraft_category"]==cat].sort_values("year")
@@ -288,12 +290,12 @@ for cat, color in zip(categories, colors):
         hovertemplate=f"<b>{cat} forecast</b><br>Year: %{{x}}<br>Predicted: %{{y:.0f}}<extra></extra>"
     ))
 
-cat_fig.add_vline(x=2024.5, line_dash="dot", line_color="#8899aa")
+cat_fig.add_vline(x=2024.5, line_dash="dot", line_color="#7a8a9a")
 cat_fig.update_layout(
     **DARK, height=420,
-    legend=dict(bgcolor="rgba(0,0,0,0)", bordercolor="#2a4a7f", font=dict(color="#ffffff")),
-    xaxis=dict(gridcolor="#1a2035", tickmode="linear", dtick=1),
-    yaxis=dict(gridcolor="#1a2035", title="Accidents")
+    legend=dict(bgcolor="rgba(0,0,0,0)", bordercolor="rgba(0,168,255,0.2)", font=dict(color="#e0e0e0")),
+    xaxis=dict(gridcolor="#0a0f14", tickmode="linear", dtick=1),
+    yaxis=dict(gridcolor="#0a0f14", title="Accidents")
 )
 st.plotly_chart(cat_fig, use_container_width=True)
 
@@ -326,15 +328,15 @@ if show_confidence:
         fill="toself", fillcolor="rgba(255,102,0,0.08)",
         line=dict(color="rgba(0,0,0,0)"), name="Confidence", hoverinfo="skip"
     ))
-dmg_fig.add_vline(x=2024.5, line_dash="dot", line_color="#8899aa")
+dmg_fig.add_vline(x=2024.5, line_dash="dot", line_color="#7a8a9a")
 dmg_fig.update_layout(
     **DARK, height=320,
-    yaxis=dict(gridcolor="#1a2035", title="Avg Damage Severity (0=None, 3=Destroyed)"),
-    xaxis=dict(gridcolor="#1a2035", tickmode="linear", dtick=1),
-    legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(color="#ffffff"))
+    yaxis=dict(gridcolor="#0a0f14", title="Avg Damage Severity (0=None, 3=Destroyed)"),
+    xaxis=dict(gridcolor="#0a0f14", tickmode="linear", dtick=1),
+    legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(color="#e0e0e0"))
 )
 st.plotly_chart(dmg_fig, use_container_width=True)
 
 st.divider()
-st.markdown("<div class='footer'>📈 Trend Forecast | Linear Regression | Aviation Safety Intelligence Platform</div>",
+st.markdown("<div class='footer' style='color:#7a8a9a;'>📈 Trend Forecast | Linear Regression | Aviation Safety Intelligence Platform</div>",
             unsafe_allow_html=True)

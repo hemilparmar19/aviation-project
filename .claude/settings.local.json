@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /d/Code/aviation-accident-analysis/pages/*.py /d/Code/aviation-accident-analysis/utils/*.py /d/Code/aviation-accident-analysis/app.py)",
+      "Bash(wc:*)"
+    ]
+  }
+}

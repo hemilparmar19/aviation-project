@@ -30,7 +30,9 @@ causes  = get_cause_contribution(df)
 
 # ── Sidebar ──────────────────────────────────────
 with st.sidebar:
-    st.markdown("<h3 style='color:#4da6ff;'>✈️ Aviation Safety</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color:#00a8ff; font-family:\"Share Tech Mono\",monospace; "
+                "text-shadow:0 0 8px rgba(0,168,255,0.3);'>AVIATION SAFETY</h3>",
+                unsafe_allow_html=True)
     st.divider()
     st.markdown("**📄 Report Settings**")
     report_title = st.text_input("Report Title", value="Global Aviation Accident Analysis Report")
@@ -55,9 +57,9 @@ causes_f = get_cause_contribution(df_filtered)
 # ═══════════════════════════════════════════════
 #  HEADER
 # ═══════════════════════════════════════════════
-st.markdown("<h1 style='color:#4da6ff;'>📄 Report Generator</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color:#00a8ff; text-shadow:0 0 15px rgba(0,168,255,0.3);'>📄 Report Generator</h1>", unsafe_allow_html=True)
 st.markdown("""
-    <p style='color:#8899aa;'>
+    <p style='color:#7a8a9a;'>
         Configure your report in the sidebar, preview it below,
         then download as CSV data or formatted text report.
     </p>
@@ -68,11 +70,11 @@ st.divider()
 #  LIVE REPORT PREVIEW
 # ═══════════════════════════════════════════════
 st.markdown(f"""
-    <div style='background:linear-gradient(135deg,#1a2035,#0d1117);
-                border-radius:14px;padding:32px;border:1px solid #2a4a7f;'>
-        <div style='text-align:center;border-bottom:2px solid #4da6ff;padding-bottom:20px;margin-bottom:24px;'>
-            <h1 style='color:#4da6ff;margin:0;font-size:1.8rem;'>✈️ {report_title}</h1>
-            <p style='color:#8899aa;margin:8px 0 0 0;'>
+    <div style='background:linear-gradient(135deg,#0a0f14,#0a0f14);
+                border-radius:14px;padding:32px;border:1px solid rgba(0,168,255,0.2);'>
+        <div style='text-align:center;border-bottom:2px solid #00a8ff;padding-bottom:20px;margin-bottom:24px;'>
+            <h1 style='color:#00a8ff;margin:0;font-size:1.8rem;'>✈️ {report_title}</h1>
+            <p style='color:#7a8a9a;margin:8px 0 0 0;'>
                 Period: {year_range[0]} – {year_range[1]} &nbsp;|&nbsp;
                 Generated: {datetime.now().strftime("%B %d, %Y")} &nbsp;|&nbsp;
                 By: {author_name}
@@ -85,8 +87,8 @@ if inc_summary:
     trend_word = "decline" if yearly_f["total_accidents"].iloc[-1] < yearly_f["total_accidents"].iloc[0] else "increase"
     st.markdown(f"""
         <div style='margin-bottom:24px;'>
-            <h2 style='color:#4da6ff;'>1. Executive Summary</h2>
-            <p style='color:#c9d1d9;line-height:1.8;'>
+            <h2 style='color:#00a8ff;'>1. Executive Summary</h2>
+            <p style='color:#e0e0e0;line-height:1.8;'>
                 This report presents a comprehensive analysis of global aviation accidents
                 from <b>{year_range[0]}</b> to <b>{year_range[1]}</b>.
                 During this period, a total of <b>{format_number(kpi_f["total_accidents"])} accidents</b>
@@ -102,7 +104,7 @@ if inc_summary:
 
 # ── Key Statistics ───────────────────────────────
 if inc_stats:
-    st.markdown("<h2 style='color:#4da6ff;'>2. Key Statistics</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#00a8ff;'>2. Key Statistics</h2>", unsafe_allow_html=True)
     r1c1, r1c2, r1c3, r1c4 = st.columns(4)
     with r1c1: st.metric("Total Accidents",     format_number(kpi_f["total_accidents"]))
     with r1c2: st.metric("Total Fatalities",    format_number(kpi_f["total_fatalities"]))
@@ -118,22 +120,22 @@ if inc_stats:
 # ── Trend Analysis ───────────────────────────────
 if inc_trend:
     import plotly.graph_objects as go
-    st.markdown("<h2 style='color:#4da6ff;'>3. Trend Analysis</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#00a8ff;'>3. Trend Analysis</h2>", unsafe_allow_html=True)
     tc1, tc2 = st.columns(2)
     with tc1:
         fig_t = go.Figure()
         fig_t.add_trace(go.Scatter(
             x=yearly_f["year"], y=yearly_f["total_accidents"],
-            mode="lines+markers", line=dict(color="#4da6ff", width=3),
-            marker=dict(size=8), fill="tozeroy", fillcolor="rgba(77,166,255,0.1)"
+            mode="lines+markers", line=dict(color="#00a8ff", width=3),
+            marker=dict(size=8), fill="tozeroy", fillcolor="rgba(0,168,255,0.1)"
         ))
         fig_t.update_layout(
             title="Accident Trend",
-            plot_bgcolor="#0d1117", paper_bgcolor="#0d1117",
-            font=dict(color="#ffffff"), height=280,
+            plot_bgcolor="#0a0f14", paper_bgcolor="#0a0f14",
+            font=dict(color="#e0e0e0"), height=280,
             margin=dict(l=10,r=10,t=40,b=10),
-            xaxis=dict(gridcolor="#1a2035",tickmode="linear",dtick=1),
-            yaxis=dict(gridcolor="#1a2035")
+            xaxis=dict(gridcolor="#0a0f14",tickmode="linear",dtick=1),
+            yaxis=dict(gridcolor="#0a0f14")
         )
         st.plotly_chart(fig_t, use_container_width=True)
     with tc2:
@@ -145,18 +147,18 @@ if inc_trend:
         ))
         fig_d.update_layout(
             title="Damage Severity Index Trend",
-            plot_bgcolor="#0d1117", paper_bgcolor="#0d1117",
-            font=dict(color="#ffffff"), height=280,
+            plot_bgcolor="#0a0f14", paper_bgcolor="#0a0f14",
+            font=dict(color="#e0e0e0"), height=280,
             margin=dict(l=10,r=10,t=40,b=10),
-            xaxis=dict(gridcolor="#1a2035",tickmode="linear",dtick=1),
-            yaxis=dict(gridcolor="#1a2035")
+            xaxis=dict(gridcolor="#0a0f14",tickmode="linear",dtick=1),
+            yaxis=dict(gridcolor="#0a0f14")
         )
         st.plotly_chart(fig_d, use_container_width=True)
 
 # ── Risk Analysis ────────────────────────────────
 if inc_risk:
     import plotly.express as px
-    st.markdown("<h2 style='color:#4da6ff;'>4. Risk Analysis</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#00a8ff;'>4. Risk Analysis</h2>", unsafe_allow_html=True)
     risk_top = risk_w.nlargest(10, "overall_risk_score")
     fig_r = px.bar(
         risk_top.sort_values("overall_risk_score"),
@@ -168,37 +170,37 @@ if inc_risk:
     )
     fig_r.update_coloraxes(showscale=False)
     fig_r.update_layout(
-        plot_bgcolor="#0d1117", paper_bgcolor="#0d1117",
-        font=dict(color="#ffffff"), height=320,
+        plot_bgcolor="#0a0f14", paper_bgcolor="#0a0f14",
+        font=dict(color="#e0e0e0"), height=320,
         margin=dict(l=10,r=10,t=40,b=10),
-        xaxis=dict(gridcolor="#1a2035"), yaxis=dict(gridcolor="#1a2035")
+        xaxis=dict(gridcolor="#0a0f14"), yaxis=dict(gridcolor="#0a0f14")
     )
     st.plotly_chart(fig_r, use_container_width=True)
 
 # ── Cause Analysis ───────────────────────────────
 if inc_causes:
-    st.markdown("<h2 style='color:#4da6ff;'>5. Cause Analysis</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#00a8ff;'>5. Cause Analysis</h2>", unsafe_allow_html=True)
     import plotly.express as px
     fig_c = px.bar(
         causes_f.head(12).sort_values("total_accidents"),
         x="total_accidents", y="reason_clean", orientation="h",
         color="cause_contribution_pct",
-        color_continuous_scale=[[0,"#1a3a6f"],[1,"#4da6ff"]],
+        color_continuous_scale=[[0,"#0d1128"],[1,"#00a8ff"]],
         labels={"total_accidents":"Total Accidents","reason_clean":"Cause","cause_contribution_pct":"Contribution %"},
         title="Primary Causes of Aviation Accidents"
     )
     fig_c.update_coloraxes(showscale=False)
     fig_c.update_layout(
-        plot_bgcolor="#0d1117", paper_bgcolor="#0d1117",
-        font=dict(color="#ffffff"), height=380,
+        plot_bgcolor="#0a0f14", paper_bgcolor="#0a0f14",
+        font=dict(color="#e0e0e0"), height=380,
         margin=dict(l=10,r=10,t=40,b=10),
-        xaxis=dict(gridcolor="#1a2035"), yaxis=dict(gridcolor="#1a2035")
+        xaxis=dict(gridcolor="#0a0f14"), yaxis=dict(gridcolor="#0a0f14")
     )
     st.plotly_chart(fig_c, use_container_width=True)
 
 # ── Aircraft Category ────────────────────────────
 if inc_aircraft:
-    st.markdown("<h2 style='color:#4da6ff;'>6. Aircraft Category Analysis</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#00a8ff;'>6. Aircraft Category Analysis</h2>", unsafe_allow_html=True)
     ac_df = df_filtered["aircraft_category"].value_counts().reset_index()
     ac_df.columns = ["Category","Count"]
     ac1, ac2 = st.columns(2)
@@ -207,9 +209,9 @@ if inc_aircraft:
         fig_ac = px.pie(ac_df, values="Count", names="Category",
                         hole=0.45, title="Accidents by Aircraft Category")
         fig_ac.update_layout(
-            plot_bgcolor="#0d1117", paper_bgcolor="#0d1117",
-            font=dict(color="#ffffff"), height=300, margin=dict(l=10,r=10,t=40,b=10),
-            legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(color="#ffffff"))
+            plot_bgcolor="#0a0f14", paper_bgcolor="#0a0f14",
+            font=dict(color="#e0e0e0"), height=300, margin=dict(l=10,r=10,t=40,b=10),
+            legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(color="#e0e0e0"))
         )
         st.plotly_chart(fig_ac, use_container_width=True)
     with ac2:
@@ -220,18 +222,18 @@ if inc_aircraft:
                                              "Medium":"#ff6600","High":"#ff0044"},
                         title="Severity by Aircraft Category")
         fig_sv.update_layout(
-            plot_bgcolor="#0d1117", paper_bgcolor="#0d1117",
-            font=dict(color="#ffffff"), height=300,
+            plot_bgcolor="#0a0f14", paper_bgcolor="#0a0f14",
+            font=dict(color="#e0e0e0"), height=300,
             margin=dict(l=10,r=10,t=40,b=10),
-            xaxis=dict(gridcolor="#1a2035",tickangle=-30),
-            yaxis=dict(gridcolor="#1a2035"),
-            legend=dict(bgcolor="rgba(0,0,0,0)",font=dict(color="#ffffff"))
+            xaxis=dict(gridcolor="#0a0f14",tickangle=-30),
+            yaxis=dict(gridcolor="#0a0f14"),
+            legend=dict(bgcolor="rgba(0,0,0,0)",font=dict(color="#e0e0e0"))
         )
         st.plotly_chart(fig_sv, use_container_width=True)
 
 # ── Recommendations ──────────────────────────────
 if inc_rec:
-    st.markdown("<h2 style='color:#4da6ff;'>7. Recommendations</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color:#00a8ff;'>7. Recommendations</h2>", unsafe_allow_html=True)
     top_cause = causes_f.iloc[0]["reason_clean"]
     recs = [
         ("🛬", "Runway Safety",        f"Implement advanced runway safety systems to address <b>{top_cause}</b>, the leading cause of accidents ({causes_f.iloc[0]['cause_contribution_pct']}% of all incidents)."),
@@ -243,10 +245,10 @@ if inc_rec:
     ]
     for icon, title, text in recs:
         st.markdown(f"""
-            <div style='background:#0d1117;border-radius:10px;padding:14px 18px;
-                        margin:8px 0;border-left:3px solid #4da6ff;'>
-                <b style='color:#4da6ff;'>{icon} {title}:</b>
-                <span style='color:#c9d1d9;'> {text}</span>
+            <div style='background:#0a0f14;border-radius:10px;padding:14px 18px;
+                        margin:8px 0;border-left:3px solid #00a8ff;'>
+                <b style='color:#00a8ff;'>{icon} {title}:</b>
+                <span style='color:#e0e0e0;'> {text}</span>
             </div>
         """, unsafe_allow_html=True)
 
@@ -264,11 +266,11 @@ dl1, dl2, dl3 = st.columns(3)
 # ── CSV Data Export ──────────────────────────────
 with dl1:
     st.markdown("""
-        <div style='background:#1a2035;border-radius:10px;padding:16px;
-                    border:1px solid #2a4a7f;text-align:center;margin-bottom:12px;'>
+        <div style='background:#0a0f14;border-radius:10px;padding:16px;
+                    border:1px solid rgba(0,168,255,0.2);text-align:center;margin-bottom:12px;'>
             <div style='font-size:2rem;'>📊</div>
-            <h4 style='color:#4da6ff;margin:8px 0 4px;'>Full Dataset (CSV)</h4>
-            <p style='color:#8899aa;font-size:0.82rem;margin:0;'>All accident records for selected period</p>
+            <h4 style='color:#00a8ff;margin:8px 0 4px;'>Full Dataset (CSV)</h4>
+            <p style='color:#7a8a9a;font-size:0.82rem;margin:0;'>All accident records for selected period</p>
         </div>
     """, unsafe_allow_html=True)
     st.download_button(
@@ -282,11 +284,11 @@ with dl1:
 # ── Statistics Export ────────────────────────────
 with dl2:
     st.markdown("""
-        <div style='background:#1a2035;border-radius:10px;padding:16px;
-                    border:1px solid #2a4a7f;text-align:center;margin-bottom:12px;'>
+        <div style='background:#0a0f14;border-radius:10px;padding:16px;
+                    border:1px solid rgba(0,168,255,0.2);text-align:center;margin-bottom:12px;'>
             <div style='font-size:2rem;'>📈</div>
-            <h4 style='color:#4da6ff;margin:8px 0 4px;'>Statistics (CSV)</h4>
-            <p style='color:#8899aa;font-size:0.82rem;margin:0;'>Yearly trends and KPI metrics</p>
+            <h4 style='color:#00a8ff;margin:8px 0 4px;'>Statistics (CSV)</h4>
+            <p style='color:#7a8a9a;font-size:0.82rem;margin:0;'>Yearly trends and KPI metrics</p>
         </div>
     """, unsafe_allow_html=True)
     stats_df = pd.DataFrame([{
@@ -303,11 +305,11 @@ with dl2:
 # ── Text Report ──────────────────────────────────
 with dl3:
     st.markdown("""
-        <div style='background:#1a2035;border-radius:10px;padding:16px;
-                    border:1px solid #2a4a7f;text-align:center;margin-bottom:12px;'>
+        <div style='background:#0a0f14;border-radius:10px;padding:16px;
+                    border:1px solid rgba(0,168,255,0.2);text-align:center;margin-bottom:12px;'>
             <div style='font-size:2rem;'>📝</div>
-            <h4 style='color:#4da6ff;margin:8px 0 4px;'>Text Report (.txt)</h4>
-            <p style='color:#8899aa;font-size:0.82rem;margin:0;'>Formatted summary report</p>
+            <h4 style='color:#00a8ff;margin:8px 0 4px;'>Text Report (.txt)</h4>
+            <p style='color:#7a8a9a;font-size:0.82rem;margin:0;'>Formatted summary report</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -394,5 +396,5 @@ with col_r2:
     )
 
 st.divider()
-st.markdown("<div class='footer'>📄 Report Generator | Aviation Safety Intelligence Platform</div>",
+st.markdown("<div class='footer' style='color:#7a8a9a;'>📄 Report Generator | Aviation Safety Intelligence Platform</div>",
             unsafe_allow_html=True)

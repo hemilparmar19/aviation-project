@@ -24,7 +24,9 @@ load_css()
 
 # Sidebar
 with st.sidebar:
-    st.markdown("<h3 style='color:#4da6ff;'>✈️ Aviation Safety</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color:#00a8ff; font-family:\"Share Tech Mono\",monospace; "
+                "text-shadow:0 0 8px rgba(0,168,255,0.3);'>AVIATION SAFETY</h3>",
+                unsafe_allow_html=True)
     st.divider()
     st.markdown("**🔽 Global Filters**")
     df_temp = load_main()
@@ -62,8 +64,8 @@ causes = get_cause_contribution(df_filtered)
 #  HEADER
 # ═══════════════════════════════════════════════
 st.markdown("""
-    <h1 style='color:#4da6ff;'>📊 Interactive Dashboard</h1>
-    <p style='color:#8899aa;'>
+    <h1 style='color:#00a8ff; text-shadow:0 0 15px rgba(0,168,255,0.3);'>📊 Interactive Dashboard</h1>
+    <p style='color:#7a8a9a;'>
         Fully recreated from Power BI — all DAX measures recalculated in Python.
         Use sidebar filters to explore the data.
     </p>
@@ -135,7 +137,7 @@ with tab2:
             locations="country_clean",
             locationmode="country names",
             color="overall_risk_score",
-            color_continuous_scale=[[0,"#003366"],[0.5,"#ffcc00"],[1,"#ff0044"]],
+            color_continuous_scale=[[0,"#001a33"],[0.5,"#ff9500"],[1,"#ff0044"]],
             hover_name="country_clean",
             hover_data={
                 "overall_risk_score": ":.3f",
@@ -146,20 +148,22 @@ with tab2:
             title="Overall Aviation Risk by Country"
         )
         fig_map.update_layout(
-            paper_bgcolor="#0d1117",
-            plot_bgcolor="#0d1117",
-            font_color="#ffffff",
+            paper_bgcolor="#0a0f14",
+            plot_bgcolor="#0a0f14",
+            font_color="#e0e0e0",
             geo=dict(
-                bgcolor="#0a0e1a",
-                lakecolor="#0a0e1a",
-                landcolor="#1a2035",
-                showframe=False
+                bgcolor="#060a0f",
+                lakecolor="#060a0f",
+                landcolor="#0a0f14",
+                showframe=False,
+                showcoastlines=True,
+                coastlinecolor="rgba(0,168,255,0.2)"
             ),
             margin=dict(l=0,r=0,t=40,b=0),
             height=380,
             coloraxis_colorbar=dict(
-                tickfont=dict(color="#ffffff"),
-                title=dict(text="Risk Score", font=dict(color="#ffffff"))
+                tickfont=dict(color="#e0e0e0"),
+                title=dict(text="Risk Score", font=dict(color="#e0e0e0"))
             )
         )
         st.plotly_chart(fig_map, use_container_width=True)

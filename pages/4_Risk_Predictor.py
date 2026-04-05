@@ -50,27 +50,29 @@ SEV_COLORS  = {0:"#00ff88",   1:"#ffcc00", 2:"#ff6600", 3:"#ff0044"}
 
 # ── Sidebar ──────────────────────────────────────
 with st.sidebar:
-    st.markdown("<h3 style='color:#4da6ff;'>✈️ Aviation Safety</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color:#00a8ff; font-family:\"Share Tech Mono\",monospace; "
+                "text-shadow:0 0 8px rgba(0,168,255,0.3);'>AVIATION SAFETY</h3>",
+                unsafe_allow_html=True)
     st.divider()
     st.markdown(f"""
-        <div style='background:#1a2035;padding:14px;border-radius:10px;
-                    border:1px solid #2a4a7f;'>
-            <p style='color:#8899aa;margin:0;font-size:0.78rem;'>🤖 MODEL</p>
-            <p style='color:#4da6ff;margin:4px 0 0 0;font-weight:600;'>Random Forest</p>
-            <p style='color:#8899aa;margin:8px 0 0 0;font-size:0.78rem;'>🎯 ACCURACY</p>
-            <p style='color:#00ff88;margin:4px 0 0 0;font-weight:600;'>{meta['accuracy']}%</p>
-            <p style='color:#8899aa;margin:8px 0 0 0;font-size:0.78rem;'>🌲 ESTIMATORS</p>
-            <p style='color:#c9d1d9;margin:4px 0 0 0;font-weight:600;'>200 trees</p>
-            <p style='color:#8899aa;margin:8px 0 0 0;font-size:0.78rem;'>📊 TRAINING DATA</p>
-            <p style='color:#c9d1d9;margin:4px 0 0 0;font-weight:600;'>2,076 records</p>
-            <p style='color:#8899aa;margin:8px 0 0 0;font-size:0.78rem;'>🧪 TEST DATA</p>
-            <p style='color:#c9d1d9;margin:4px 0 0 0;font-weight:600;'>520 records</p>
+        <div style='background:#0a0f14;padding:14px;border-radius:10px;
+                    border:1px solid rgba(0,168,255,0.2);'>
+            <p style='color:#7a8a9a;margin:0;font-size:0.78rem;'>🤖 MODEL</p>
+            <p style='color:#00a8ff;margin:4px 0 0 0;font-weight:600;'>Random Forest</p>
+            <p style='color:#7a8a9a;margin:8px 0 0 0;font-size:0.78rem;'>🎯 ACCURACY</p>
+            <p style='color:#00a8ff;margin:4px 0 0 0;font-weight:600;'>{meta['accuracy']}%</p>
+            <p style='color:#7a8a9a;margin:8px 0 0 0;font-size:0.78rem;'>🌲 ESTIMATORS</p>
+            <p style='color:#e0e0e0;margin:4px 0 0 0;font-weight:600;'>200 trees</p>
+            <p style='color:#7a8a9a;margin:8px 0 0 0;font-size:0.78rem;'>📊 TRAINING DATA</p>
+            <p style='color:#e0e0e0;margin:4px 0 0 0;font-weight:600;'>2,076 records</p>
+            <p style='color:#7a8a9a;margin:8px 0 0 0;font-size:0.78rem;'>🧪 TEST DATA</p>
+            <p style='color:#e0e0e0;margin:4px 0 0 0;font-weight:600;'>520 records</p>
         </div>
     """, unsafe_allow_html=True)
     st.divider()
     st.markdown("""
-        <div style='color:#8899aa;font-size:0.8rem;'>
-            <b style='color:#c9d1d9;'>Features Used:</b><br>
+        <div style='color:#7a8a9a;font-size:0.8rem;'>
+            <b style='color:#e0e0e0;'>Features Used:</b><br>
             • Aircraft Category<br>
             • Country Risk Score<br>
             • Month of Travel<br>
@@ -85,10 +87,10 @@ with st.sidebar:
 # ═══════════════════════════════════════════════
 #  HEADER
 # ═══════════════════════════════════════════════
-st.markdown("<h1 style='color:#4da6ff;'>🤖 AI Accident Risk Predictor</h1>",
+st.markdown("<h1 style='color:#00a8ff; text-shadow:0 0 15px rgba(0,168,255,0.3);'>🤖 AI Accident Risk Predictor</h1>",
             unsafe_allow_html=True)
 st.markdown("""
-    <p style='color:#8899aa;'>
+    <p style='color:#7a8a9a;'>
         Our Random Forest model — trained on 2,596 real accidents (2015–2025) —
         predicts fatality severity based on country, aircraft type, and travel month.
         Uses risk scores from all 4 data tables.
@@ -159,13 +161,13 @@ with col_result:
 
     if not predict_btn:
         st.markdown("""
-            <div style='background:#1a2035;border-radius:14px;padding:40px;
-                        border:1px dashed #2a4a7f;text-align:center;margin-top:10px;'>
+            <div style='background:#0a0f14;border-radius:14px;padding:40px;
+                        border:1px dashed rgba(0,168,255,0.2);text-align:center;margin-top:10px;'>
                 <div style='font-size:3rem;'>🔮</div>
-                <h3 style='color:#8899aa;'>Awaiting Prediction</h3>
-                <p style='color:#8899aa;font-size:0.9rem;'>
+                <h3 style='color:#7a8a9a;'>Awaiting Prediction</h3>
+                <p style='color:#7a8a9a;font-size:0.9rem;'>
                     Fill in the flight details on the left<br>
-                    and click <b style='color:#4da6ff;'>Predict Risk</b>
+                    and click <b style='color:#00a8ff;'>Predict Risk</b>
                 </p>
             </div>
         """, unsafe_allow_html=True)
@@ -220,7 +222,7 @@ with col_result:
 
         # ── RESULT CARD ───────────────────────────
         st.markdown(f"""
-            <div style='background:linear-gradient(135deg,#1a2035,#1e3a5f);
+            <div style='background:linear-gradient(135deg,#0a0f14,#0d1128);
                         border-radius:14px;padding:28px;
                         border:2px solid {pred_color};margin-bottom:16px;'>
                 <div style='text-align:center;'>
@@ -230,10 +232,10 @@ with col_result:
                     <h2 style='color:{pred_color};margin:8px 0 4px 0;font-size:1.8rem;'>
                         {pred_label}
                     </h2>
-                    <p style='color:#8899aa;margin:0;font-size:0.9rem;'>
+                    <p style='color:#7a8a9a;margin:0;font-size:0.9rem;'>
                         Predicted Fatality Severity
                     </p>
-                    <div style='background:#0a0e1a;border-radius:20px;
+                    <div style='background:#060a0f;border-radius:20px;
                                 padding:6px 20px;display:inline-block;margin-top:10px;'>
                         <span style='color:{pred_color};font-weight:600;font-size:1.1rem;'>
                             {confidence}% confidence
@@ -251,10 +253,10 @@ with col_result:
             st.markdown(f"""
                 <div style='margin-bottom:10px;'>
                     <div style='display:flex;justify-content:space-between;margin-bottom:4px;'>
-                        <span style='color:#c9d1d9;font-size:0.88rem;'>{label}</span>
+                        <span style='color:#e0e0e0;font-size:0.88rem;'>{label}</span>
                         <span style='color:{color};font-weight:600;font-size:0.88rem;'>{pct}%</span>
                     </div>
-                    <div style='background:#0a0e1a;border-radius:6px;height:8px;'>
+                    <div style='background:#060a0f;border-radius:6px;height:8px;'>
                         <div style='background:{color};border-radius:6px;
                                     height:8px;width:{pct}%;transition:width 0.5s;'></div>
                     </div>
@@ -301,13 +303,13 @@ with col_result:
             name="Global Average",
             x=comp_df["Metric"],
             y=comp_df["Global Average"],
-            marker_color="#4da6ff"
+            marker_color="#00a8ff"
         ))
         fig.update_layout(
             barmode="group",
-            plot_bgcolor="#0d1117",
-            paper_bgcolor="#0d1117",
-            font=dict(color="#ffffff"),
+            plot_bgcolor="#0a0f14",
+            paper_bgcolor="#0a0f14",
+            font=dict(color="#e0e0e0"),
             height=250,
             margin=dict(l=10, r=10, t=10, b=10),
             legend=dict(bgcolor="rgba(0,0,0,0)")
@@ -334,16 +336,16 @@ import plotly.express as px
 fig_imp = px.bar(
     imp_df, x="Importance", y="Feature", orientation="h",
     color="Importance",
-    color_continuous_scale=[[0,"#1a3a6f"],[0.5,"#4da6ff"],[1,"#00ff88"]],
+    color_continuous_scale=[[0,"#0d1128"],[0.5,"#00a8ff"],[1,"#00ff88"]],
     labels={"Importance":"Importance (%)","Feature":""},
     title="Feature Importance — Random Forest Model"
 )
 fig_imp.update_coloraxes(showscale=False)
 fig_imp.update_layout(
-    plot_bgcolor="#0d1117", paper_bgcolor="#0d1117",
-    font=dict(color="#ffffff"),
-    xaxis=dict(gridcolor="#1a2035"),
-    yaxis=dict(gridcolor="#1a2035"),
+    plot_bgcolor="#0a0f14", paper_bgcolor="#0a0f14",
+    font=dict(color="#e0e0e0"),
+    xaxis=dict(gridcolor="#0a0f14"),
+    yaxis=dict(gridcolor="#0a0f14"),
     height=360,
     margin=dict(l=10,r=10,t=40,b=10)
 )
@@ -354,7 +356,7 @@ st.plotly_chart(fig_imp, use_container_width=True)
 # ═══════════════════════════════════════════════
 st.divider()
 st.markdown("### 🔄 Compare Two Scenarios")
-st.markdown("<p style='color:#8899aa;'>Compare risk predictions for two different flight configurations side by side.</p>",
+st.markdown("<p style='color:#7a8a9a;'>Compare risk predictions for two different flight configurations side by side.</p>",
             unsafe_allow_html=True)
 
 sc1, sc2 = st.columns(2)
@@ -412,17 +414,17 @@ if st.button("⚡ Compare Scenarios", use_container_width=True):
     for col, res in zip([r1, r2], results):
         with col:
             st.markdown(f"""
-                <div style='background:#1a2035;border-radius:12px;padding:20px;
+                <div style='background:#0a0f14;border-radius:12px;padding:20px;
                             border:2px solid {res["color"]};text-align:center;'>
-                    <h4 style='color:#8899aa;margin:0;'>{res["label"]}</h4>
-                    <p style='color:#c9d1d9;margin:4px 0;font-size:0.85rem;'>
+                    <h4 style='color:#7a8a9a;margin:0;'>{res["label"]}</h4>
+                    <p style='color:#e0e0e0;margin:4px 0;font-size:0.85rem;'>
                         {res["country"]} | {res["aircraft"]} | {res["month"]}
                     </p>
                     <div style='font-size:2rem;margin:10px 0;'>
                         {risk_emoji(res["pred_class"]*25)}
                     </div>
                     <h3 style='color:{res["color"]};margin:0;'>{res["pred_label"]}</h3>
-                    <p style='color:#8899aa;margin:4px 0;font-size:0.85rem;'>
+                    <p style='color:#7a8a9a;margin:4px 0;font-size:0.85rem;'>
                         {res["confidence"]}% confidence
                     </p>
                 </div>
@@ -430,5 +432,5 @@ if st.button("⚡ Compare Scenarios", use_container_width=True):
 
 # ── Footer ───────────────────────────────────────
 st.divider()
-st.markdown("<div class='footer'>🤖 AI Risk Predictor | Random Forest | 70.38% Accuracy | Aviation Safety Intelligence Platform</div>",
+st.markdown("<div class='footer' style='color:#7a8a9a;'>🤖 AI Risk Predictor | Random Forest | 70.38% Accuracy | Aviation Safety Intelligence Platform</div>",
             unsafe_allow_html=True)

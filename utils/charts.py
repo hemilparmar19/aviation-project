@@ -3,16 +3,17 @@ import plotly.graph_objects as go
 
 # ── THEME COLORS ─────────────────────────────
 THEME = {
-    "bg":        "#0a0e1a",
-    "card_bg":   "#0d1117",
-    "line":      "#4da6ff",
-    "fill":      "rgba(77,166,255,0.1)",
-    "grid":      "#1a2035",
-    "text":      "#ffffff",
-    "subtext":   "#8899aa",
-    "accent":    "#4da6ff",
+    "bg":        "#060a0f",
+    "card_bg":   "#0a0f14",
+    "line":      "#00a8ff",
+    "fill":      "rgba(0,168,255,0.08)",
+    "grid":      "#0d1828",
+    "text":      "#e0e0e0",
+    "subtext":   "#7a8a9a",
+    "accent":    "#00a8ff",
+    "cyan":      "#00d4ff",
     "danger":    "#ff0044",
-    "warning":   "#ffcc00",
+    "warning":   "#ff9500",
     "safe":      "#00ff88",
 }
 
@@ -90,7 +91,7 @@ def aircraft_bar_chart(df):
         y="aircraft_category",
         orientation="h",
         color="total_accidents",
-        color_continuous_scale=[[0, "#1a3a6f"], [1, "#4da6ff"]],
+        color_continuous_scale=[[0, "#003366"], [1, "#00a8ff"]],
         labels={"total_accidents": "Total Accidents",
                 "aircraft_category": "Aircraft Category"},
     )
@@ -115,7 +116,7 @@ def top_countries_chart(df, top_n=10):
         y="country_clean",
         orientation="h",
         color="total_accidents",
-        color_continuous_scale=[[0, "#1a3a6f"], [1, "#4da6ff"]],
+        color_continuous_scale=[[0, "#003366"], [1, "#00a8ff"]],
         labels={"total_accidents": "Total Accidents",
                 "country_clean": "Country"},
     )
@@ -154,7 +155,7 @@ def fatality_severity_donut(df):
 
     colors = {
         "Non-Fatal": "#00ff88",
-        "Low":       "#ffcc00",
+        "Low":       "#ff9500",
         "Medium":    "#ff6600",
         "High":      "#ff0044"
     }
@@ -184,7 +185,7 @@ def damage_severity_trend(yearly_df):
         line=dict(color=THEME["warning"], width=3),
         marker=dict(size=8, color=THEME["warning"]),
         fill="tozeroy",
-        fillcolor="rgba(255,204,0,0.1)",
+        fillcolor="rgba(255,149,0,0.1)",
         hovertemplate=(
             "<b>Year:</b> %{x}<br>"
             "<b>Damage Severity Index:</b> %{y:.3f}<extra></extra>"
@@ -195,7 +196,7 @@ def damage_severity_trend(yearly_df):
     return apply_dark_theme(fig)
 
 
-# ── CHART 8: Risk Scatter (Fatality vs Damage) 
+# ── CHART 8: Risk Scatter (Fatality vs Damage)
 def risk_scatter_chart(risk_df):
     """
     Scatter plot: avg_fatal_risk (x) vs severe_damage_rate (y)
@@ -234,7 +235,7 @@ def top_risk_countries_chart(risk_df, top_n=10):
         y="country_clean",
         orientation="h",
         color="overall_risk_score",
-        color_continuous_scale=[[0, "#1a3a6f"], [0.5, "#ffcc00"], [1, "#ff0044"]],
+        color_continuous_scale=[[0, "#003366"], [0.5, "#ff9500"], [1, "#ff0044"]],
         labels={"overall_risk_score": "Overall Risk Score",
                 "country_clean": "Country"},
     )
@@ -259,7 +260,7 @@ def monthly_heatmap(df):
         z=pivot.values,
         x=[str(y) for y in pivot.columns],
         y=month_names[:len(pivot.index)],
-        colorscale="Blues",
+        colorscale=[[0, "#0a0f1a"], [0.25, "#0d2244"], [0.5, "#1a4a6b"], [0.75, "#0088dd"], [1, "#00a8ff"]],
         hovertemplate="<b>Year:</b> %{x}<br><b>Month:</b> %{y}<br><b>Accidents:</b> %{z}<extra></extra>"
     ))
     fig.update_layout(title="Accident Frequency Heatmap (Month × Year)")

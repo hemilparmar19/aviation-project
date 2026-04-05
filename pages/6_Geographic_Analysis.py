@@ -36,7 +36,9 @@ country_df["accident_count"] = country_df["accident_count"].fillna(0)
 
 # ── Sidebar ──────────────────────────────────────
 with st.sidebar:
-    st.markdown("<h3 style='color:#4da6ff;'>✈️ Aviation Safety</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color:#00a8ff; font-family:\"Share Tech Mono\",monospace; "
+                "text-shadow:0 0 8px rgba(0,168,255,0.3);'>AVIATION SAFETY</h3>",
+                unsafe_allow_html=True)
     st.divider()
     st.markdown("**🗺️ Map Settings**")
     map_metric = st.selectbox("Color Map By", [
@@ -65,8 +67,8 @@ with st.sidebar:
 import plotly.express as px
 import plotly.graph_objects as go
 
-DARK = dict(plot_bgcolor="#0d1117", paper_bgcolor="#0d1117",
-            font=dict(color="#ffffff"),
+DARK = dict(plot_bgcolor="#0a0f14", paper_bgcolor="#0a0f14",
+            font=dict(color="#e0e0e0"),
             margin=dict(l=10,r=10,t=40,b=10))
 
 METRIC_LABELS = {
@@ -80,9 +82,9 @@ METRIC_LABELS = {
 # ═══════════════════════════════════════════════
 #  HEADER
 # ═══════════════════════════════════════════════
-st.markdown("<h1 style='color:#4da6ff;'>🗺️ Geographic Risk Analysis</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='color:#00a8ff; text-shadow:0 0 15px rgba(0,168,255,0.3);'>🗺️ Geographic Risk Analysis</h1>", unsafe_allow_html=True)
 st.markdown("""
-    <p style='color:#8899aa;'>
+    <p style='color:#7a8a9a;'>
         Interactive world map showing aviation accident risk by country.
         Click sidebar to change metric, select country for detailed breakdown.
     </p>
@@ -118,7 +120,7 @@ fig_map = px.choropleth(
     locations="country_clean",
     locationmode="country names",
     color=map_metric,
-    color_continuous_scale=[[0,"#003366"],[0.4,"#0066cc"],[0.7,"#ffcc00"],[1,"#ff0044"]],
+    color_continuous_scale=[[0,"#001a33"],[0.4,"#003366"],[0.7,"#ffcc00"],[1,"#ff0044"]],
     hover_name="country_clean",
     hover_data={
         "overall_risk_score":    ":.3f",
@@ -131,22 +133,22 @@ fig_map = px.choropleth(
     title=f"Global Aviation {METRIC_LABELS[map_metric]} by Country"
 )
 fig_map.update_layout(
-    paper_bgcolor="#0d1117",
-    plot_bgcolor="#0d1117",
-    font_color="#ffffff",
+    paper_bgcolor="#0a0f14",
+    plot_bgcolor="#0a0f14",
+    font_color="#e0e0e0",
     geo=dict(
-        bgcolor="#0a0e1a",
-        lakecolor="#0a0e1a",
-        landcolor="#1a2035",
+        bgcolor="#060a0f",
+        lakecolor="#060a0f",
+        landcolor="#0a0f14",
         showframe=False,
         showcoastlines=True,
-        coastlinecolor="#2a4a7f"
+        coastlinecolor="rgba(0,168,255,0.2)"
     ),
     margin=dict(l=0,r=0,t=40,b=0),
     height=480,
     coloraxis_colorbar=dict(
-        tickfont=dict(color="#ffffff"),
-        title=dict(text=METRIC_LABELS[map_metric], font=dict(color="#ffffff"))
+        tickfont=dict(color="#e0e0e0"),
+        title=dict(text=METRIC_LABELS[map_metric], font=dict(color="#e0e0e0"))
     )
 )
 st.plotly_chart(fig_map, use_container_width=True)
@@ -224,13 +226,13 @@ if len(c_row) > 0:
 
     with d1:
         st.markdown(f"""
-            <div style='background:linear-gradient(135deg,#1a2035,#1e3a5f);
+            <div style='background:linear-gradient(135deg,#0a0f14,#0d1128);
                         border-radius:14px;padding:24px;
                         border:2px solid {risk_col};'>
-                <h3 style='color:#4da6ff;margin-top:0;'>{lookup_country}</h3>
+                <h3 style='color:#00a8ff;margin-top:0;'>{lookup_country}</h3>
                 <div style='margin:16px 0;'>
-                    <p style='color:#8899aa;margin:0;font-size:0.78rem;'>OVERALL RISK SCORE</p>
-                    <div style='background:#0a0e1a;border-radius:8px;height:12px;margin:6px 0;'>
+                    <p style='color:#7a8a9a;margin:0;font-size:0.78rem;'>OVERALL RISK SCORE</p>
+                    <div style='background:#060a0f;border-radius:8px;height:12px;margin:6px 0;'>
                         <div style='background:{risk_col};border-radius:8px;
                                     height:12px;width:{min(risk_pct,100)}%;'></div>
                     </div>
@@ -239,17 +241,17 @@ if len(c_row) > 0:
                     </p>
                 </div>
                 <div style='display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;'>
-                    <div><p style='color:#8899aa;margin:0;font-size:0.75rem;'>TOTAL ACCIDENTS</p>
+                    <div><p style='color:#7a8a9a;margin:0;font-size:0.75rem;'>TOTAL ACCIDENTS</p>
                          <p style='color:#fff;margin:0;font-weight:600;font-size:1.1rem;'>{int(r.get("accident_count",0))}</p></div>
-                    <div><p style='color:#8899aa;margin:0;font-size:0.75rem;'>AVG/YEAR</p>
+                    <div><p style='color:#7a8a9a;margin:0;font-size:0.75rem;'>AVG/YEAR</p>
                          <p style='color:#fff;margin:0;font-weight:600;font-size:1.1rem;'>{round(float(r.get("avg_annual_crashes",0)),1)}</p></div>
-                    <div><p style='color:#8899aa;margin:0;font-size:0.75rem;'>FATAL RISK</p>
+                    <div><p style='color:#7a8a9a;margin:0;font-size:0.75rem;'>FATAL RISK</p>
                          <p style='color:#ffcc00;margin:0;font-weight:600;font-size:1.1rem;'>{round(float(r.get("avg_fatal_risk",0))*100,1)}%</p></div>
-                    <div><p style='color:#8899aa;margin:0;font-size:0.75rem;'>HIGH RISK PROB</p>
+                    <div><p style='color:#7a8a9a;margin:0;font-size:0.75rem;'>HIGH RISK PROB</p>
                          <p style='color:#ff6600;margin:0;font-weight:600;font-size:1.1rem;'>{round(float(r.get("high_risk_probability",0))*100,1)}%</p></div>
-                    <div><p style='color:#8899aa;margin:0;font-size:0.75rem;'>SEVERE DAMAGE</p>
+                    <div><p style='color:#7a8a9a;margin:0;font-size:0.75rem;'>SEVERE DAMAGE</p>
                          <p style='color:#fff;margin:0;font-weight:600;font-size:1.1rem;'>{round(float(r.get("severe_damage_rate",0))*100,1)}%</p></div>
-                    <div><p style='color:#8899aa;margin:0;font-size:0.75rem;'>COUNTRY RANK</p>
+                    <div><p style='color:#7a8a9a;margin:0;font-size:0.75rem;'>COUNTRY RANK</p>
                          <p style='color:#fff;margin:0;font-weight:600;font-size:1.1rem;'>
                              #{int(country_df["overall_risk_score"].rank(ascending=False)[c_row.index[0]])} / {len(country_df)}
                          </p></div>
@@ -264,13 +266,13 @@ if len(c_row) > 0:
             fig_cy = go.Figure()
             fig_cy.add_trace(go.Bar(
                 x=c_yearly["year"], y=c_yearly["accidents"],
-                marker_color="#4da6ff",
+                marker_color="#00a8ff",
                 hovertemplate="<b>Year:</b> %{x}<br><b>Accidents:</b> %{y}<extra></extra>"
             ))
             fig_cy.update_layout(**DARK, height=220,
                                   title=f"Accidents Per Year — {lookup_country}",
-                                  xaxis=dict(gridcolor="#1a2035", tickmode="linear", dtick=1),
-                                  yaxis=dict(gridcolor="#1a2035"))
+                                  xaxis=dict(gridcolor="#0a0f14", tickmode="linear", dtick=1),
+                                  yaxis=dict(gridcolor="#0a0f14"))
             st.plotly_chart(fig_cy, use_container_width=True)
 
             # Cause breakdown
@@ -325,7 +327,7 @@ if st.button("⚡ Compare Countries", use_container_width=True):
     fig_radar.add_trace(go.Scatterpolar(
         r=vals_a + [vals_a[0]], theta=radar_labels + [radar_labels[0]],
         fill="toself", name=country_a,
-        line=dict(color="#4da6ff"), fillcolor="rgba(77,166,255,0.15)"
+        line=dict(color="#00a8ff"), fillcolor="rgba(0,168,255,0.15)"
     ))
     fig_radar.add_trace(go.Scatterpolar(
         r=vals_b + [vals_b[0]], theta=radar_labels + [radar_labels[0]],
@@ -334,13 +336,13 @@ if st.button("⚡ Compare Countries", use_container_width=True):
     ))
     fig_radar.update_layout(
         polar=dict(
-            bgcolor="#0d1117",
-            radialaxis=dict(visible=True, range=[0,1], gridcolor="#1a2035", color="#8899aa"),
-            angularaxis=dict(gridcolor="#1a2035", color="#8899aa")
+            bgcolor="#0a0f14",
+            radialaxis=dict(visible=True, range=[0,1], gridcolor="#0a0f14", color="#7a8a9a"),
+            angularaxis=dict(gridcolor="#0a0f14", color="#7a8a9a")
         ),
-        paper_bgcolor="#0d1117",
-        font=dict(color="#ffffff"),
-        legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(color="#ffffff")),
+        paper_bgcolor="#0a0f14",
+        font=dict(color="#e0e0e0"),
+        legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(color="#e0e0e0")),
         height=380
     )
 
@@ -371,16 +373,16 @@ if st.button("⚡ Compare Countries", use_container_width=True):
         safer  = country_a if risk_a < risk_b else country_b
         diff   = abs(risk_a - risk_b) * 100
         st.markdown(f"""
-            <div style='background:#1a2035;border-radius:10px;padding:16px;
+            <div style='background:#0a0f14;border-radius:10px;padding:16px;
                         border:1px solid #00ff88;text-align:center;margin-top:12px;'>
-                <p style='color:#8899aa;margin:0;font-size:0.85rem;'>OVERALL VERDICT</p>
+                <p style='color:#7a8a9a;margin:0;font-size:0.85rem;'>OVERALL VERDICT</p>
                 <h3 style='color:#00ff88;margin:6px 0;'>✅ {safer} is safer</h3>
-                <p style='color:#c9d1d9;margin:0;font-size:0.9rem;'>
+                <p style='color:#e0e0e0;margin:0;font-size:0.9rem;'>
                     by {diff:.1f}% overall risk score
                 </p>
             </div>
         """, unsafe_allow_html=True)
 
 st.divider()
-st.markdown("<div class='footer'>🗺️ Geographic Analysis | Aviation Safety Intelligence Platform</div>",
+st.markdown("<div class='footer' style='color:#7a8a9a;'>🗺️ Geographic Analysis | Aviation Safety Intelligence Platform</div>",
             unsafe_allow_html=True)
