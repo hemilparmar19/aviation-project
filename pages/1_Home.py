@@ -17,7 +17,7 @@ st.set_page_config(page_title="Home | Aviation Safety",
 def load_css():
     css_path = os.path.join(os.path.dirname(__file__), "..", "assets", "style.css")
     if os.path.exists(css_path):
-        with open(css_path) as f:
+        with open(css_path, encoding="utf-8") as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 load_css()
 
@@ -74,7 +74,7 @@ st.markdown("""
 st.divider()
 
 # ═══════════════════════════════════════════════
-#  ROW 1 — KPI METRICS (matching Power BI exactly)
+#  ROW 1 — KPI METRICS
 # ═══════════════════════════════════════════════
 c1, c2, c3, c4, c5 = st.columns(5)
 
@@ -133,14 +133,13 @@ chart_col, insight_col = st.columns([2, 1])
 
 with chart_col:
     st.subheader("📈 Global Accident Trend")
-    st.plotly_chart(trend_line_chart(yearly),
-                    use_container_width=True)
+    st.plotly_chart(trend_line_chart(yearly), use_container_width=True)
 
 with insight_col:
     st.subheader("💡 Key Insights")
     insights = [
         ("📉", "Accidents declined significantly from the 2019 peak to 2024"),
-        ("✈️", f"Most common cause: <b>Runway Excursion</b>"),
+        ("✈️", "Most common cause: <b>Runway Excursion</b>"),
         ("🌍", "USA leads globally in total accident count"),
         (risk_emoji(kpi['highest_risk_score']),
          f"<b>{kpi['highest_risk_country']}</b> has highest risk score "
@@ -183,31 +182,31 @@ st.divider()
 
 # ═══════════════════════════════════════════════
 #  ROW 5 — NAVIGATION CARDS
+#  Each column gets:
+#    1. nav-card div  (rounded top corners, no bottom radius)
+#    2. st.button     (rounded bottom corners, no top radius)
+#  Together they form one seamless card unit.
 # ═══════════════════════════════════════════════
 st.subheader("🚀 Explore the Platform")
 
-n1, n2, n3 = st.columns(3)
-
 pages = [
-    ("📊", "Dashboard",      "Recreated interactive dashboard with all Power BI visuals",   "pages/2_Dashboard.py"),
-    ("🤖", "AI Risk Predictor","ML-powered accident risk prediction for any route/aircraft", "pages/4_Risk_Predictor.py"),
-    ("📈", "Trend Forecast",  "2026–2027 accident predictions using time series models",     "pages/5_Trend_Forecast.py"),
+    ("📊", "Dashboard",        "Recreated interactive dashboard with all Power BI visuals",   "pages/2_Dashboard.py"),
+    ("🤖", "AI Risk Predictor", "ML-powered accident risk prediction for any route/aircraft",  "pages/4_Risk_Predictor.py"),
+    ("📈", "Trend Forecast",    "2026–2027 accident predictions using time series models",     "pages/5_Trend_Forecast.py"),
+    ("📤", "Dynamic Analysis",  "Upload your own data and generate instant insights",          "pages/8_Dynamic_Analysis.py"),
 ]
 
-for col, (icon, title, desc, page) in zip([n1, n2, n3], pages):
+cols = st.columns(4)
+for col, (icon, title, desc, page) in zip(cols, pages):
     with col:
         st.markdown(f"""
             <div class='nav-card'>
-                <div style='font-size:2rem;'>{icon}</div>
-                <h3>{title}</h3>
-                <p>{desc}</p>
+                <div class='nav-card-icon'>{icon}</div>
+                <div class='nav-card-title'>{title}</div>
+                <div class='nav-card-desc'>{desc}</div>
+                <a class='nav-card-btn' href='{page}'>Open {title}</a>
             </div>
         """, unsafe_allow_html=True)
-        col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
-        with col_btn2:
-            if st.button(f"Open {title}", key=f"nav_{title}"):
-                st.switch_page(page)
-
 # ═══════════════════════════════════════════════
 #  FOOTER
 # ═══════════════════════════════════════════════

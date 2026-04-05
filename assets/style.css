@@ -41,24 +41,6 @@ section[data-testid="stSidebar"] * {
     font-weight: 700 !important;
 }
 
-/* ── BUTTONS ──────────────────────────────────── */
-.stButton > button {
-    background: linear-gradient(135deg, #1a6fff, #0044cc);
-    color: white !important;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 24px;
-    font-weight: 600;
-    width: 100%;
-    transition: all 0.3s ease;
-}
-
-.stButton > button:hover {
-    background: linear-gradient(135deg, #4488ff, #1a6fff);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(26,111,255,0.4);
-}
-
 /* ── TABS ─────────────────────────────────────── */
 .stTabs [data-baseweb="tab-list"] {
     background: #0d1117;
@@ -119,25 +101,121 @@ hr { border-color: #1a2035 !important; margin: 1.5rem 0; }
     line-height: 1.5;
 }
 
-/* ── NAV CARD ─────────────────────────────────── */
+/* ═══════════════════════════════════════════════
+   NAV CARD — top half of the card unit
+   Round corners only on top; flat bottom border
+   so it visually merges with the button below.
+   height: 100% + the column flex trick ensures
+   all 4 cards are the same height automatically.
+   ═══════════════════════════════════════════════ */
+
+/* Make Streamlit columns stretch to equal height */
+[data-testid="stHorizontalBlock"] {
+    align-items: stretch !important;
+}
+
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+    display: flex;
+    flex-direction: column;
+}
+
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"] > [data-testid="stVerticalBlock"] {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+}
+
+/* The markdown div wrapping nav-card should grow */
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"] > [data-testid="stVerticalBlock"] > div:first-child {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── NAV CARD (top section) ───────────────────── */
 .nav-card {
     background: linear-gradient(135deg, #1a2035, #1e3a5f);
-    padding: 22px;
-    border-radius: 14px;
-    text-align: center;
     border: 1px solid #2a4a7f;
-    transition: all 0.3s ease;
-    min-height: 160px;
+    border-radius: 14px;
+    padding: 24px 18px 18px 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-card:hover {
     border-color: #4da6ff;
     box-shadow: 0 6px 20px rgba(77,166,255,0.2);
-    transform: translateY(-3px);
 }
 
-.nav-card h3 { color: #4da6ff !important; margin: 8px 0 4px 0; }
-.nav-card p  { color: #8899aa; font-size: 0.82rem; margin: 0; }
+.nav-card-icon { font-size: 2rem; margin-bottom: 10px; }
+
+.nav-card-title {
+    color: #4da6ff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.nav-card-desc {
+    color: #8899aa;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    flex: 1;                /* pushes button to bottom */
+    margin-bottom: 16px;
+}
+
+.nav-card-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background: linear-gradient(135deg, #1a6fff, #0044cc);
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-card-btn:hover {
+    background: linear-gradient(135deg, #4488ff, #1a6fff);
+    box-shadow: 0 5px 15px rgba(26,111,255,0.4);
+}
+
+/* Remove Streamlit's default margin above button element */
+[data-testid="stHorizontalBlock"] [data-testid="stVerticalBlock"] > div:has(.stButton) {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* ── ALL OTHER BUTTONS (outside nav cards) ────── */
+.stButton > button {
+    background: linear-gradient(135deg, #1a6fff, #0044cc);
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-weight: 600;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(135deg, #4488ff, #1a6fff);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26,111,255,0.4);
+}
 
 /* ── FOOTER ───────────────────────────────────── */
 .footer {
@@ -148,7 +226,6 @@ hr { border-color: #1a2035 !important; margin: 1.5rem 0; }
     border-top: 1px solid #1a2035;
     margin-top: 2rem;
 }
-
 
 /* ── HIDE APP FROM SIDEBAR ───────────────────── */
 section[data-testid="stSidebar"] a[href="?"] {
