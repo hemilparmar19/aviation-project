@@ -264,52 +264,6 @@ with col_d:
 
 st.plotly_chart(monthly_heatmap(df), use_container_width=True)
 
-# st.divider()
-
-# ═══════════════════════════════════════════════
-#  ROW 5 — NAVIGATION CARDS
-# ═══════════════════════════════════════════════
-# st.markdown("""
-#     <div style='letter-spacing:2px; text-transform:uppercase; color:#00a8ff;
-#                 font-family:"Share Tech Mono",monospace; font-size:1.1rem;
-#                 border-bottom:1px solid rgba(0,168,255,0.2); padding-bottom:6px; margin-bottom:10px;'>
-#         // EXPLORE THE PLATFORM
-#     </div>
-# """, unsafe_allow_html=True)
-
-# pages = [
-#     ("📊", "Dashboard",        "Recreated interactive dashboard with all Power BI visuals",   "pages/2_Dashboard.py"),
-#     ("🤖", "AI Risk Predictor", "ML-powered accident risk prediction for any route/aircraft",  "pages/4_Risk_Predictor.py"),
-#     ("📈", "Trend Forecast",    "2026–2027 accident predictions using time series models",     "pages/5_Trend_Forecast.py"),
-#     ("📤", "Dynamic Analysis",  "Upload your own data and generate instant insights",          "pages/8_Dynamic_Analysis.py"),
-# ]
-
-# cols = st.columns(4)
-# for col, (icon, title, desc, page) in zip(cols, pages):
-#     with col:
-#         st.markdown(f"""
-#             <div class='nav-card hud-panel'
-#                  style='background:linear-gradient(135deg, #0a0f14, #0d1128);
-#                         border:1px solid rgba(0,168,255,0.2); border-radius:8px;
-#                         padding:20px; text-align:center;'>
-#                 <div class='nav-card-icon' style='font-size:2rem; margin-bottom:8px;'>{icon}</div>
-#                 <div class='nav-card-title' style='color:#00a8ff; font-family:"Share Tech Mono",monospace;
-#                             font-size:1rem; font-weight:bold; margin-bottom:6px;
-#                             letter-spacing:1px;'>{title}</div>
-#                 <div class='nav-card-desc' style='color:#7a8a9a; font-size:0.82rem;
-#                             margin-bottom:14px; line-height:1.4;'>{desc}</div>
-#                 <a class='nav-card-btn' href='{page}'
-#                    style='display:inline-block; padding:6px 18px; border-radius:4px;
-#                           background:linear-gradient(135deg, rgba(0,168,255,0.15), rgba(0,212,255,0.1));
-#                           color:#00a8ff; text-decoration:none; font-size:0.85rem;
-#                           border:1px solid rgba(0,168,255,0.3);
-#                           font-family:"Share Tech Mono",monospace; letter-spacing:1px;
-#                           transition: all 0.3s ease;'>
-#                     OPEN {title.upper()}
-#                 </a>
-#             </div>
-#         """, unsafe_allow_html=True)
-
 # ═══════════════════════════════════════════════
 #  FOOTER
 # ═══════════════════════════════════════════════
